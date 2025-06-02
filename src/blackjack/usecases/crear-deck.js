@@ -1,36 +1,42 @@
 import _ from 'underscore';
 
-//export const miNombre = 'Claudia';
+// export const miNombre = 'Fernando';
+
 
 /**
- * This function creates a deck of cards.
- * @param {Array<String>} palos Example: ['C', 'D', 'H', 'S']
- * @param {Array<String>} specialCards Example: ['A', 'J', 'Q', 'K']
- * @returns {Array<String>} returns a shuffled deck of cards
+ * Esta función crea un nuevo deck
+ * @param {Array<String>} tiposDeCarta Ejemplo: ['C','D','H','S']
+ * @param {Array<String>} tiposEspeciales Ejemplo: ['A','J','Q','K']
+ * @returns {Array<String>} retorna un nuevo deck de cartas
  */
+export const crearDeck = (tiposDeCarta, tiposEspeciales) => {
 
-export const crearDeck = (palos, specialCards) => {
+    if ( !tiposDeCarta || tiposDeCarta.length === 0  ) 
+        throw new Error('tiposDeCarta es obligatorio como un arreglo de string');
+    
+    if ( !tiposEspeciales || tiposEspeciales.length === 0  ) 
+        throw new Error('tiposEspeciales es obligatorio como un arreglo de string');
 
-    if(!palos || palos.length === 0) 
-        throw new Error('Los palos son obligatorios');
-
-    if(!specialCards || specialCards.length === 0) 
-        throw new Error('Las cartas especiales son obligatorias');
-
+    
     let deck = [];
 
-    for(let i = 2; i <= 10; i++) {
-        for(let palo of palos) {
-        deck.push(i + palo);
+    for( let i = 2; i <= 10; i++ ) {
+        for( let tipo of tiposDeCarta ) {
+            deck.push( i + tipo);
         }
     }
 
-    for(let palo of palos) {
-        for(let specialCard of specialCards) {
-            deck.push(specialCard + palo);
+    for( let tipo of tiposDeCarta ) {
+        for( let esp of tiposEspeciales ) {
+            deck.push( esp + tipo);
         }
     }
-    return _.shuffle (deck);
-};
+    // console.log( deck );
+    deck = _.shuffle( deck );
 
-export default crearDeck;
+    return deck;
+}
+
+
+
+// export default crearDeck;
