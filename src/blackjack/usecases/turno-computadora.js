@@ -39,5 +39,5 @@ export const turnoComputadora = ( puntosMinimos, puntosHTML, divCartasComputador
         } else {
             alert('Computadora Gana')
         }
-    }, 120 );
+    }, 150 );
 }
